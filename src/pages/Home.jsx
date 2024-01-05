@@ -12,6 +12,7 @@ export default function Home() {
                 <ArtistSelection background="/taylor-swift-bg-img.jpeg" artistName="Taylor Swift"/>
                 <ArtistSelection background="/metro-boomin-bg-img.webp" artistName="Metro Boomin"/>
                 <ArtistSelection background="/radiohead-bg-img.jpeg" artistName="Radiohead"/>
+                <ArtistSelection background="/weeknd-bg-img.jpeg" artistName="The Weeknd"/>
             </div>
         </div>
     )

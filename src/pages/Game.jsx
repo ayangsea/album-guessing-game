@@ -11,7 +11,8 @@ export default function Game() {
         "Metro Boomin": "0iEtIxbK0KxaSlF7G42ZOp",
         "Taylor Swift": "06HL4z0CvFAxyc27GXpf02",
         "Kendrick Lamar": "2YZyLoL8N0Wb9xBt1NhZWg",
-        "Radiohead": "4Z8W4fKeB5YxbusRsdQVPb"
+        "Radiohead": "4Z8W4fKeB5YxbusRsdQVPb",
+        "The Weeknd": "1Xyo4u8uXC1ZmMpatF05PJ"
     }
 
     const location = useLocation()
@@ -133,19 +134,35 @@ export default function Game() {
         setCorrect(newCorrect)
     }
 
+    const updateAlbumPosition = (e, index) => {
+        e.preventDefault();
+        const newPosition = parseInt(e.target.elements.albumPosition.value, 10);
+        if (!isNaN(newPosition) && newPosition > 0 && newPosition <= albums.length) {
+            const newAlbums = [...albums];
+            const movedItem = newAlbums.splice(index, 1)[0];
+            newAlbums.splice(newPosition - 1, 0, movedItem);
+            setAlbums(newAlbums);
+        }
+        const inputElement = document.getElementById(`albumPos-${index + 1}`);
+        if (inputElement) {
+            inputElement.value = index + 1;
+            console.log('here')
+        }
+      };
+
     return (
         <div className="albumDisplay">
             <h1>Albums</h1>
-            {submitted && <h3>Score: {correct.filter((val) => val === 1).length}</h3>}
+            {submitted && <h3>Score: {correct.filter((val) => val === 1).length} / {albums.length}</h3>}
+            {submitted && <button className="tryAgain" onClick={() => tryAgain()}>Try Again</button>}
                 {
                     revealed ? 
                         <div>
-                            <button className="tryAgain" onClick={() => tryAgain()}>Try Again</button>
                             <ul>
                                 {albumsSorted.map((album, index) => (
                                     <li key={index}>
                                         <label>
-                                            {index}: 
+                                            {index + 1}
                                         </label>
                                         {album.name} 
                                         <label>
@@ -165,9 +182,9 @@ export default function Game() {
                             <ul>
                                 {albums.map((album, index) => (
                                     <li key={index}>
-                                        <label>
-                                            {index + 1}: 
-                                        </label>
+                                        {!submitted ? <form onSubmit={(e) => updateAlbumPosition(e, index)}> 
+                                            <input id={`albumPos-${index + 1}`}type="text" name="albumPosition" defaultValue={index + 1}/>
+                                        </form> : <div>{index + 1}</div>}
                                         {!submitted && (
                                             <div className="buttonList">
                                                 <button onClick={() => moveItem(index, 'up')}>↑</button>

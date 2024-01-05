@@ -154,3 +154,7 @@ body {
   background-color: #3498db;
   color: #fff;
 }
+
+.albumDisplay input {
+  width: 2rem;
+}
