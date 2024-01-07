@@ -116,6 +116,27 @@ body {
   font-size: 1.35rem;
 }
 
+.albumDisplay label {
+  display: flex;
+  margin: 1rem;
+  gap: 2rem;
+  align-items: center;
+}
+
+.albumDisplay .contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.albumDisplay .ranking {
+  font-size: 2rem;
+  gap: 0.5rem;
+}
+
+.albumDisplay .popularity {
+  font-size: 0.95rem;
+}
+
 .buttonList {
   display: flex;
   flex-direction: column;

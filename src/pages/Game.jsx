@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Buffer } from 'buffer';
 import dotenv from 'dotenv';
 import qs from 'qs'
+import AlbumRevealed from '../components/albumRevealed';
+import AlbumNotRevealed from '../components/albumNotRevealed';
 
 export default function Game() {
 
@@ -154,53 +156,18 @@ export default function Game() {
         <div className="albumDisplay">
             <h1>Albums</h1>
             {submitted && <h3>Score: {correct.filter((val) => val === 1).length} / {albums.length}</h3>}
-            {submitted && <button className="tryAgain" onClick={() => tryAgain()}>Try Again</button>}
-                {
-                    revealed ? 
-                        <div>
-                            <ul>
-                                {albumsSorted.map((album, index) => (
-                                    <li key={index}>
-                                        <label>
-                                            {index + 1}
-                                        </label>
-                                        {album.name} 
-                                        <label>
-                                            Popularity: {album.popularity}
-                                        </label>
-                                        <img src={album.images[0].url}></img>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    : 
-                        <div>
-                            <div className="submitButtons">
-                                <button onClick={() => submitGuess()}>Submit</button>
-                                <button onClick={() => revealRankings()}>Reveal Actual Ranking</button>
-                            </div>
-                            <ul>
-                                {albums.map((album, index) => (
-                                    <li key={index}>
-                                        {!submitted ? <form onSubmit={(e) => updateAlbumPosition(e, index)}> 
-                                            <input id={`albumPos-${index + 1}`}type="text" name="albumPosition" defaultValue={index + 1}/>
-                                        </form> : <div>{index + 1}</div>}
-                                        {!submitted && (
-                                            <div className="buttonList">
-                                                <button onClick={() => moveItem(index, 'up')}>↑</button>
-                                                <button onClick={() => moveItem(index, 'down')}>↓</button>
-                                            </div>)
-                                        }
-                                        {album.name}
-                                        <img src={album.images[0].url}></img>
-                                        {submitted && correct[index] === 1 && (<img src="/check.png"/>)}
-                                        {submitted && correct[index] === 0 && (<img src="x.png"/>)}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                }
-                
+            {(submitted || revealed) && <button className="tryAgain" onClick={() => tryAgain()}>Try Again</button>}
+                {revealed ? <AlbumRevealed 
+                                albumsSorted={albumsSorted}
+                            /> : 
+                            <AlbumNotRevealed 
+                                albums={albums}
+                                submitGuess={submitGuess}
+                                revealRankings={revealRankings}
+                                moveItem={moveItem}
+                                submitted={submitted}
+                                updateAlbumPosition={updateAlbumPosition}
+                                correct={correct}/>}
         </div>
 
     )
