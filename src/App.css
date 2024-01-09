@@ -11,6 +11,18 @@ body {
   text-align: center;
 }
 
+.homeScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about {
+  margin: 1rem;
+  text-align: center;
+}
+
 .navbar {
   background-color: #333;
   color:white;

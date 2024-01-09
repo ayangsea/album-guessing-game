@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ArtistSelection from "../components/ArtistSelection"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faC, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
 
@@ -21,7 +21,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="homeScreen">
             <h1>Choose Which Artist to Play</h1>
             <p>Instructions: Rank the albums in the order you think is most popular to least popular</p>
             <div className="selectGenre">
