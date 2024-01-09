@@ -6,12 +6,8 @@ body {
   margin: 0
 }
 
-.container {
-  margin: 1rem;
-  text-align: center;
-}
-
 .homeScreen {
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,6 +121,11 @@ body {
 .chooseArtist:hover {
   background-color: grey;
   cursor: pointer;
+}
+
+.albumDisplay {
+  text-align: center;
+  margin: 1rem;
 }
 
 .albumDisplay img{
