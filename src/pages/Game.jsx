@@ -133,9 +133,13 @@ export default function Game() {
         e.preventDefault();
         const newPosition = parseInt(e.target.elements.albumPosition.value, 10);
         if (!isNaN(newPosition) && newPosition > 0 && newPosition <= albums.length) {
-            const newAlbums = [...albums];
-            const movedItem = newAlbums.splice(index, 1)[0];
-            newAlbums.splice(newPosition - 1, 0, movedItem);
+            let newAlbums = [...albums];
+            const movedAlbum = newAlbums[index];
+            newAlbums[index] = newAlbums[newPosition - 1]
+            newAlbums[newPosition - 1] = movedAlbum
+            console.log(albums)
+            console.log(newAlbums)
+            //newAlbums.splice(newPosition - 1, 0, movedItem);
             setAlbums(newAlbums);
         }
         const inputElement = document.getElementById(`albumPos-${index + 1}`);
