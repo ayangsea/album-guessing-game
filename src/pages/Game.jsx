@@ -9,16 +9,8 @@ import AlbumNotRevealed from '../components/albumNotRevealed';
 
 export default function Game() {
 
-    const artistIDs = {
-        "Metro Boomin": "0iEtIxbK0KxaSlF7G42ZOp",
-        "Taylor Swift": "06HL4z0CvFAxyc27GXpf02",
-        "Kendrick Lamar": "2YZyLoL8N0Wb9xBt1NhZWg",
-        "Radiohead": "4Z8W4fKeB5YxbusRsdQVPb",
-        "The Weeknd": "1Xyo4u8uXC1ZmMpatF05PJ"
-    }
-
     const location = useLocation()
-    const artist = location.state && location.state.artist
+    const artistID = location.state && location.state.artistID
     
     const [albumIDs, setAlbumIDs] = useState([])
     const [albums, setAlbums] = useState([])
@@ -57,7 +49,7 @@ export default function Game() {
         const access_token = await getAuth();
         //console.log(access_token);
       
-        const api_url = `https://api.spotify.com/v1/artists/${artistIDs[artist]}/albums`;
+        const api_url = `https://api.spotify.com/v1/artists/${artistID}/albums`;
         //console.log(api_url);
         try{
             const response = await axios.get(api_url, {
@@ -73,8 +65,9 @@ export default function Game() {
     };
 
     useEffect(() => {
+        console.log(artistID)
         getAlbums();
-    }, [artist]);
+    }, [artistID]);
 
     useEffect(() => {
         const getAlbumDetails = async (albumID) => {
@@ -167,7 +160,8 @@ export default function Game() {
                                 moveItem={moveItem}
                                 submitted={submitted}
                                 updateAlbumPosition={updateAlbumPosition}
-                                correct={correct}/>}
+                                correct={correct}/>
+            }
         </div>
 
     )

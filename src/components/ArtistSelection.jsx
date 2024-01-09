@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
-export default function ArtistSelection({artistName, background}) {
+export default function ArtistSelection({artistName, background, artistID}) {
 
     const navigate = useNavigate();
     const toGame = () => {
-        navigate('/game', { state: { artist: artistName } });
+        navigate('/game', { state: { artistID: artistID } });
       };
     
     return (
