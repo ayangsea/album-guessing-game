@@ -139,7 +139,6 @@ export default function Game() {
             newAlbums[newPosition - 1] = movedAlbum
             console.log(albums)
             console.log(newAlbums)
-            //newAlbums.splice(newPosition - 1, 0, movedItem);
             setAlbums(newAlbums);
         }
         const inputElement = document.getElementById(`albumPos-${index + 1}`);
